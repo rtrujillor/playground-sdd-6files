@@ -5,33 +5,36 @@ change.
 
 ## Current Phase
 
-- [e.g. Not started / In progress / Complete]
+- Complete
 
 ## Current Goal
 
-- [What you are building right now]
+- Design system and UI primitive components from `feature-specs/01-design-system.md` are complete.
 
 ## Completed
 
-- None yet.
+- Configured shadcn/ui with React Server Component and TypeScript support.
+- Added the button, card, dialog, input, tabs, textarea, and scroll-area primitives.
+- Installed Lucide React and added the reusable `lib/utils.ts` `cn()` helper.
+- Mapped shadcn semantic tokens to the documented Ghost AI dark palette and enabled dark mode at the document root.
+- Verified all component imports with TypeScript, confirmed `cn()` resolves conflicting Tailwind classes, passed ESLint, and completed a production build.
 
 ## In Progress
 
-- None yet.
+- None.
 
 ## Next Up
 
-- [First unit to build]
+- Select and implement the next feature specification.
 
 ## Open Questions
 
-- [Any unresolved product or technical decisions]
+- None.
 
 ## Architecture Decisions
 
-- [Decisions made that affect the system design or
-  data model — include why the decision was made]
+- Use shadcn semantic CSS variables as aliases of the Ghost AI design tokens so generated primitives stay reusable while conforming to the dark-only product theme.
 
 ## Session Notes
 
-- [Context needed to resume work in the next session]
+- Design-system feature completed on 2026-09-25. The webpack production build passed; the default Turbopack build could not bind its internal sandbox port in this environment.
