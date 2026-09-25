@@ -2,48 +2,45 @@
 
 ## General
 
-- [Principle — e.g. Keep modules small and single-purpose]
-- [Principle — e.g. Fix root causes, do not layer workarounds]
-- [Principle — e.g. Do not mix unrelated concerns in one
-  component or route]
+- Keep modules small and single-purpose
+- Fix root causes, do not layer workarounds
+- Do not mix unrelated concerns in one
+  component or route
+- Respect the system boundaries defined in architecture-context.md. 
 
 ## TypeScript
 
-- [Rule — e.g. Strict mode is required throughout the project]
-- [Rule — e.g. Avoid any — use explicit interfaces or narrowly
-  scoped types]
-- [Rule — e.g. Validate unknown external input at system
-  boundaries before trusting it]
+- Strict mode is required throughout the project
+- Avoid any — use explicit interfaces or narrowly
+  scoped types
+- Validate unknown external input at system
+  boundaries before trusting it
+- Use interface for object contracts. 
 
-## [Framework — e.g. Next.js]
+## Next.js
 
-- [Convention — e.g. Default to server components]
-- [Convention — e.g. Add use client only when browser
-  interactivity requires it]
-- [Convention — e.g. Keep route handlers focused on a
-  single responsibility]
+- Default to react server components
+- Add `use client` only when the component needs browser interactivity, hooks, or real-time state. 
+- Keep route handlers focused on a
+  single responsibility
+- Long-running work belongs in background tasks, not in request handlers. 
 
 ## Styling
 
-- [Rule — e.g. Use CSS custom property tokens — no
-  hardcoded hex values]
-- [Rule — e.g. Follow the border radius scale defined
-  in ui-context.md]
+- Use CSS custom property tokens defined in globals.css. No raw Tailwind color classes like `zinc-500`, `*`, or hardcoded values. 
+- Reference tokens through the Tailwind utility names: `bg-base`, `text-copy`, `border`, `border-face`, etc. 
+- Maintain the border radius scale: `rounded-sm` for small elements, `rounded-2xl` for cards, and `rounded-3xl` for models. 
 
 ## API Routes
 
-- [Rule — e.g. Validate and parse request input before
-  any logic runs]
-- [Rule — e.g. Enforce auth and ownership before any mutation]
-- [Rule — e.g. Return consistent, predictable response shapes]
+- Validate and parse request input before
+  any logic runs
+- Enforce auth and ownership before any mutation
+- Return consistent, predictable response shapes
 
 ## Data and Storage
 
-- [Rule — e.g. Metadata belongs in the database]
-- [Rule — e.g. Large generated content belongs in file
-  or blob storage]
-- [Rule — e.g. Do not store large content directly in
-  the database]
+- 
 
 ## File Organization
 

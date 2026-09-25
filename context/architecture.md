@@ -4,39 +4,51 @@
 
 | Layer     | Technology                  | Role   |
 | --------- | --------------------------- | ------ |
-| Framework | [e.g. Next.js + TypeScript] | [Role] |
-| UI        | [e.g. Tailwind + shadcn/ui] | [Role] |
-| Auth      | [e.g. Clerk]                | [Role] |
-| Database  | [e.g. Prisma + PostgreSQL]  | [Role] |
-| [Layer]   | [Technology]                | [Role] |
+| Framework | Next.js + TypeScript | Full-stack app with server/client boundaries |
+| UI        | Tailwind + shadcn/ui | Component composition and styling |
+| Auth      | Clerk                | User Identity and route protection |
+| Database  | Prisma + PostgreSQL  | Relational - Metadata, Projects, Collaborators, Specs, Task runs |
+| Canvas    | Liveblocks + React Flow | Real-time collaborative canvas, presence, and cursors |
+| Background tasks | Trigger.dev           | Durable AI generation workflows |
+|  Artifact storage | Versel blob  | Canvas snapshots and generated Markdown specs |
 
 ## System Boundaries
 
-- `[folder]` — [What this folder owns and is responsible for]
-- `[folder]` — [What this folder owns and is responsible for]
-- `[folder]` — [What this folder owns and is responsible for]
-- `[folder]` — [What this folder owns and is responsible for]
+- App/API authenticated request handlers as input validation, ownership checks, testing, and persistence 
+- Trigger long-running background jobs: AI design generation and spec generation. 
+- Lib shared infrastructure Prisma client access control helpers and utilities 
+- Components, UI composition, canvas surfaces, sidebars, dialogs, and interactive elements 
+- Prisma database schema and generated client output 
+- Data: legacy local directory, not used for new artifacts. 
 
 ## Storage Model
 
-- **[Storage type e.g. Database]**: [What lives here —
-  e.g. metadata, ownership, relationships]
-- **[Storage type e.g. Blob/File Storage]**: [What lives
-  here — e.g. generated files, media, large artifacts]
+- Database, metadata, ownership relationships, and task run records 
+- Vercel Blob:  generated artifacts: Canvas snapshots at canvas/{projectID}.json and specs at specs/{projectID}/{specID}.md 
+- Project records, spec records, and task run records belong in PostgreSQL. 
+- Canvas content and Markdown output are stored and retrieved from Vercel Blob. 
+- The blob URL is stored in the database (canvasJsonPath,filePath) as the reference to the artifact. 
 
-## Auth and Access Model
+## Auth and Collaboration Model
 
-- [How authentication works — e.g. Every user signs in
-  via Clerk]
-- [How ownership works — e.g. Every project has a single
-  owner]
-- [How access control works — e.g. Only the owner or a
-  collaborator can mutate project resources]
+- Every project has a single owner Clerk user ID.
+- Projects can include additional collaborators.
+- Only authenticated users can access protected routes.
+- Only the owner or a collaborator can mutate project resources.
+- Live blocks room tokens are issued only after verifying project membership.
+
+## Starter system designs 
+
+- Preview templates are static canvas snapshots stored in the codebase. 
+- Templates are loaded into the active Lifeblocks room when a user imports one. 
+- Import Canuckur on canvas creation or from within the editor at any time. 
+- Template data follows the same node/edge schema as user-created canvas. 
+
 
 ## Invariants
 
-1. [Rule the codebase must never violate — e.g. Request
-   handlers do not run long-lived background work]
-2. [Invariant two]
-3. [Invariant three]
-4. [Invariant four]
+- Request handlers do not run long-lived AI work that belongs in background tasks.
+- Metadata and large generated artifacts are stored in separate layers.
+- Auth and ownership are enforced at every mutation boundary.
+- Client components are used only where browser interactivity or real-time state requires them.
+- The canvas schema must remain consistent between user-created content and imported templates.

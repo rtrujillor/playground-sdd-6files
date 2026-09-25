@@ -2,28 +2,22 @@
 
 ## Approach
 
-[Describe the overall development approach — e.g. Build
-this project incrementally using a spec-driven workflow.
-Context files define what to build, how to build it, and
-the current state of progress. Always implement against
-these specs — do not infer or invent behavior from scratch.]
+Build this project incrementally using a spec-driven workflow. Context files define what to build, how to build it, and what the current state of progress is. Always implement against these specs. Do not infer or invent behavior from scratch. 
 
 ## Scoping Rules
 
-- Work on one feature unit at a time
-- Prefer small, verifiable increments over large
-  speculative changes
-- Do not combine unrelated system boundaries in a
-  single implementation step
+- Work on one feature unit or subsystem at a time. 
+- Prefer small, verifiable increments over large, speculative changes. 
+- Do not combine unrelated system boundaries in a single implementation step. 
 
 ## When to Split Work
 
 Split an implementation step if it combines:
 
-- [Concern one — e.g. UI changes and background task changes]
-- [Concern two — e.g. Multiple unrelated API routes]
-- [Concern three — e.g. Behavior not clearly defined in
-  the context files]
+- UI changes and background task changes
+- Real-time canvas state and database persistence
+- Multiple unrelated API routes
+- Behavior that is not clearly defined in the context files
 
 If a change cannot be verified end to end quickly,
 the scope is too broad — split it.
@@ -39,10 +33,18 @@ the scope is too broad — split it.
 
 ## Protected Files
 
-Do not modify the following unless explicitly instructed:
+Do not modify generated third-party Foundation components unless explicitly instructed. 
 
-- [e.g. components/ui/* — generated UI library components]
-- [e.g. Any third-party library internals]
+This includes 
+
+- components/ui/* and 
+- third-party library internals. 
+
+These should remain default and reusable. 
+
+Project-specific styling, layout changes, and future logic must be implemented in up-level components instead of modifying Foundation components. 
+
+Only modify these files when a task explicitly requires it. 
 
 ## Keeping Docs in Sync
 
@@ -53,6 +55,8 @@ changes:
 - Storage model decisions
 - Code conventions or standards
 - Feature scope
+
+Progress state must reflect the actual state of the implementation, not the intended state. 
 
 ## Before Moving to the Next Unit
 
