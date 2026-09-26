@@ -1,5 +1,6 @@
 "use client"
 
+import { UserButton } from "@clerk/nextjs"
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -40,7 +41,12 @@ function EditorNavBar({
         </Button>
       </div>
       <div aria-label="Editor navigation center" />
-      <div aria-label="Editor navigation actions" />
+      <div
+        className="flex items-center justify-end"
+        aria-label="Editor navigation actions"
+      >
+        <UserButton />
+      </div>
     </header>
   )
 }
