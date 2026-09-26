@@ -1,5 +1,6 @@
 "use client"
 
+import { UserButton } from "@clerk/nextjs"
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -11,6 +12,10 @@ interface EditorNavBarProps {
   className?: string
 }
 
+/**
+ * Renders the fixed editor bar with Clerk's user menu and a sidebar toggle.
+ * The caller owns sidebar state; clicking the toggle invokes `onSidebarToggle`.
+ */
 function EditorNavBar({
   isSidebarOpen,
   onSidebarToggle,
@@ -40,7 +45,12 @@ function EditorNavBar({
         </Button>
       </div>
       <div aria-label="Editor navigation center" />
-      <div aria-label="Editor navigation actions" />
+      <div
+        className="flex items-center justify-end"
+        aria-label="Editor navigation actions"
+      >
+        <UserButton />
+      </div>
     </header>
   )
 }
