@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   description: "Collaborative system design workspace",
 };
 
+/** Wraps page content in the dark application shell and themed Clerk provider. */
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

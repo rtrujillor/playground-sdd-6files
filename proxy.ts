@@ -9,6 +9,11 @@ const authRoutePatterns = [
 
 const isPublicRoute = createRouteMatcher(authRoutePatterns)
 
+/**
+ * Requires a session for matched requests outside the configured auth URL patterns.
+ * If neither auth URL is set, no matched route is public. Clerk converts protection
+ * signals into redirects or error responses; other errors propagate.
+ */
 export default clerkMiddleware(async (auth, request) => {
   if (!isPublicRoute(request)) {
     await auth.protect()

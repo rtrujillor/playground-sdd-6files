@@ -12,6 +12,10 @@ interface EditorNavBarProps {
   className?: string
 }
 
+/**
+ * Renders the fixed editor bar with Clerk's user menu and a sidebar toggle.
+ * The caller owns sidebar state; clicking the toggle invokes `onSidebarToggle`.
+ */
 function EditorNavBar({
   isSidebarOpen,
   onSidebarToggle,

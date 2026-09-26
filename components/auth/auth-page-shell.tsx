@@ -11,6 +11,10 @@ const features = [
   "Turn your graph into a technical specification",
 ]
 
+/**
+ * Centers authentication content, with a branding panel visible at the `lg`
+ * breakpoint and above.
+ */
 function AuthPageShell({ children }: AuthPageShellProps) {
   return (
     <main className="grid min-h-screen bg-base lg:grid-cols-2">
